@@ -21,6 +21,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +50,7 @@ public class ScheduleViewActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference appointments;
 
+    private String time;
     private String clientName;
     private String clientPhoneNumber;
     private String companyEmail;
@@ -69,7 +72,7 @@ public class ScheduleViewActivity extends AppCompatActivity {
         companyName = extraIntentInfo.getStringExtra(COMPANY_NAME);
 
         final TextView textViewDate = (TextView) findViewById(R.id.textViewDate);
-        final ListView listViewSchedule = (ListView) findViewById(R.id.listViewSchedule);
+        listViewSchedule = (ListView) findViewById(R.id.listViewSchedule);
         textViewDate.setText(appointmentDate);
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, schedule);
@@ -98,33 +101,42 @@ public class ScheduleViewActivity extends AppCompatActivity {
                 }
             }
         });
-        //Deletes the appointment from database
-        listViewSchedule.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                appointmentTime = (String) adapter.getItem(position).toString();
-                final String time = appointmentTime.substring(appointmentTime.indexOf("@")+2, appointmentTime.indexOf("\n"));
-                textViewDate.setText(time);
-                //This doesn't work!!
-                deleteAppointmentFromDb(time);
-                adapter.notifyDataSetChanged();
-                return true;
-            }
-        });
 
-    }
-
-    private void deleteAppointmentFromDb(String theTime){
-        final String time = theTime;
-        final DocumentReference docRef = db.collection(PATH_PROVIDER_COLLECTION).document(companyName).collection(PATH_DAILY_SCHEDULE).document(appointmentDate).collection(appointmentTime).document(time);
-        docRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+        listViewSchedule.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                    Log.d(TAG, "Deleted appointment from db!");
-                else
-                    Log.d(TAG, "Unable to delete appointment!");
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+                appointmentTime = (String) adapter.getItemAtPosition(position).toString();
+                time = appointmentTime.substring(appointmentTime.indexOf("@")+2, appointmentTime.indexOf("\n"));
+                //Route for appointment information
+                DocumentReference docRef = db.collection(PATH_PROVIDER_COLLECTION).document(companyName).collection(PATH_DAILY_SCHEDULE)
+                        .document(appointmentDate).collection(appointmentTime).document(time);
+                //Delete appointment from schedule
+                docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "onSuccess: Deleted appointment from db!");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onFailure: ", e);
+                    }
+                });
             }
         });
     }
 }
+
+//                Map<String, Object> updates = new HashMap<>();
+//                updates.put("AppointmentDate", FieldValue.delete());
+//                updates.put("AppointmentTime", FieldValue.delete());
+//                updates.put("ClientName", FieldValue.delete());
+//                updates.put("ClientPhoneNumber", FieldValue.delete());
+//                updates.put("CompanyName", FieldValue.delete());
+
+//                docRef.update(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
+////                    @Override
+////                    public void onComplete(@NonNull Task<Void> task) {
+////                        Log.d(TAG, "onComplete: Deleted the client fields!");
+////                    }
+////                });
