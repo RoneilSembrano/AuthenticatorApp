@@ -45,6 +45,7 @@
         android:layout_height="400dp"
         android:background="@drawable/calendar_style"
         android:selectedWeekBackgroundColor="#BF2B6F2B"
+        android:selectedDateVerticalBar="#BF2B6F2B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

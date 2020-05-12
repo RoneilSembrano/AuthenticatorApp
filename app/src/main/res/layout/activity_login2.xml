@@ -26,11 +26,10 @@
         android:id="@+id/imageView"
         android:layout_width="255dp"
         android:layout_height="273dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".25"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogout2"
         app:srcCompat="@drawable/ontime_logo" />
 
     <EditText
@@ -39,6 +38,7 @@
         android:layout_height="45dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
+        android:layout_marginTop="418dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:autofillHints=""
@@ -46,24 +46,22 @@
         android:ems="12"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/buttonUpdateSchedule"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogout2" />
 
     <Button
         android:id="@+id/buttonUpdateSchedule"
         android:layout_width="255dp"
         android:layout_height="45dp"
+        android:layout_marginTop="485dp"
         android:background="@drawable/btn_rounded_dark"
         android:text="Login"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".8" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogout2" />
 
     <TextView
         android:id="@+id/textView"
@@ -83,6 +81,7 @@
         android:layout_height="45dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
+        android:layout_marginTop="350dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:autofillHints=""
@@ -90,11 +89,9 @@
         android:ems="12"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".6" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,29 +30,27 @@
         android:id="@+id/buttonGoToHome"
         android:layout_width="255dp"
         android:layout_height="45dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/btn_rounded_dark"
         android:text="Home"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".875" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpdateSchedule" />
 
     <Button
         android:id="@+id/buttonUpdateSchedule"
         android:layout_width="255dp"
         android:layout_height="45dp"
+        android:layout_marginTop="450dp"
         android:background="@drawable/btn_rounded_dark"
         android:text="Submit"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".75" />
+        app:layout_constraintTop_toBottomOf="@+id/textMainCompanyTitle" />
 
     <TextView
         android:id="@+id/textViewStartTime"
@@ -73,12 +71,11 @@
         android:id="@+id/spinnerStartTime"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="175dp"
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".33" />
+        app:layout_constraintTop_toBottomOf="@+id/textMainCompanyTitle" />
 
     <TextView
         android:id="@+id/textView4"
@@ -99,11 +96,10 @@
         android:id="@+id/spinnerEndTime"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="290dp"
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".5" />
+        app:layout_constraintTop_toBottomOf="@+id/textMainCompanyTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
