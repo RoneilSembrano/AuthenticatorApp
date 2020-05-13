@@ -34,4 +34,9 @@ The flow created for testing the app is as follows, but feel free to do what mak
 6. Repeat for Different Days and Times
 7. Log back into Business to view booked appointments
 
+## Video Walkthrough
+
+Here's a walkthrough of Book Appointment feature:
+
+<img src='https://i.gyazo.com/959a9dc2a4fc061781e2e999eaf464b4.gif' width='' alt='Video Walkthrough' />
 
